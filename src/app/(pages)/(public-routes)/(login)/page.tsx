@@ -1,5 +1,5 @@
 "use client";
-import { Form } from "antd";
+import { Form, message } from "antd";
 import { Footer, ImageBg, LoginCard, LoginContent, MainContent } from "./style";
 import Logo from "@/Components/Logo";
 import FormLogin from "@/Components/FormLogin";
@@ -17,6 +17,8 @@ export default function Home() {
     const result = await signIn(values);
     if (result.success && result.token) {
       router.push("/dashboard");
+    } else {
+      message.error(result.message);
     }
   };
 

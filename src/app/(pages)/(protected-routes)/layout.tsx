@@ -1,20 +1,13 @@
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
+"use server";
+import { verifyToken } from "@/app/server-actions/verifyToken";
 import React from "react";
 
 interface LayoutProps {
   children: React.ReactNode;
 }
 
-export default function StyledLayout({ children }: LayoutProps) {
-  const verifyToken = () => {
-    const token = cookies().get("token");
-    if (!token) {
-      redirect("/");
-    }
-  };
-
-  verifyToken();
+export default async function StyledLayout({ children }: LayoutProps) {
+  await verifyToken();
 
   return <>{children}</>;
 }
