@@ -9,7 +9,6 @@ import {
   Sider,
   ToggleButtonWrapper,
 } from "./style";
-import useCollapsed from "@/Hooks/useCollaped";
 import Icon from "@mdi/react";
 import { mdiClose, mdiLogout, mdiMenu } from "@mdi/js";
 import Logo from "../Logo";

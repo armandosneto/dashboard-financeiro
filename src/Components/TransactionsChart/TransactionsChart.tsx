@@ -14,7 +14,6 @@ const TransactionsChart: React.FC<Props> = ({ data }) => {
     if (chartRef.current) {
       const context = chartRef.current.getContext("2d");
 
-      // Destroy the previous chart if it exists
       if (chartRef.current.chart) {
         chartRef.current.chart.destroy();
       }
@@ -29,29 +28,28 @@ const TransactionsChart: React.FC<Props> = ({ data }) => {
         (group) => group.total
       );
 
-      // Create a new Chart instance with the updated data
       const newChart = new Chart(context, {
-        type: "bar", // Adjust the chart type as needed
+        type: "bar",
         data: {
           labels: labels,
           datasets: [
             {
               label: "Depósitos",
               data: depositsValues,
-              backgroundColor: "green", // Customize the color
+              backgroundColor: "green",
             },
             {
               label: "Saques",
               data: withdrawValues,
-              backgroundColor: "red", // Customize the color
+              backgroundColor: "red",
             },
           ],
         },
         options: {
-          // Customize chart options as needed
+          responsive: true,
           scales: {
             x: {
-              type: "category", // Use 'category' for discrete labels
+              type: "category",
               title: {
                 display: true,
                 text: "Date",
@@ -77,7 +75,6 @@ const TransactionsChart: React.FC<Props> = ({ data }) => {
         position: "relative",
         width: "100%",
         flex: 1,
-        objectFit: "contain",
       }}
       ref={chartRef}
     />

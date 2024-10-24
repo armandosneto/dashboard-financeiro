@@ -25,6 +25,6 @@ export const List = styled(ListAntd)`
   flex-direction: column;
   padding: 16px;
   background-color: white;
-  height: 100px;
+  height: 120px;
   overflow: auto;
 `;

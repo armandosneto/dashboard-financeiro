@@ -1,7 +1,6 @@
 "use client";
 import { handleLogin } from "@/app/server-actions/auth";
 import { logout as deleteAuthCookie } from "@/app/server-actions/logout";
-import useCollapsed from "@/Hooks/useCollaped";
 import React, {
   createContext,
   ReactNode,
@@ -27,6 +26,7 @@ export const AuthContextProvider: React.FC<{
   }, []);
 
   const logout = useCallback(async () => {
+    localStorage.clear();
     await deleteAuthCookie();
   }, []);
 

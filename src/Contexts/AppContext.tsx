@@ -1,14 +1,6 @@
 "use client";
-import { handleLogin } from "@/app/server-actions/auth";
-import { logout as deleteAuthCookie } from "@/app/server-actions/logout";
 import useCollapsed from "@/Hooks/useCollaped";
-import React, {
-  createContext,
-  ReactNode,
-  useCallback,
-  useContext,
-  useState,
-} from "react";
+import React, { createContext, ReactNode, useContext } from "react";
 
 const AppContext = createContext<Contexts.AppContext | undefined>(undefined);
 
