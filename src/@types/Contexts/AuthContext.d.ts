@@ -3,6 +3,8 @@
 namespace Contexts {
   interface AuthContext {
     signIn: (data: AuthContext.LoginValues) => Promise<AuthContext.LoginResult>;
+    token?: string;
+    logout: () => Promise<void>;
   }
 
   namespace AuthContext {

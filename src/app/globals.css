@@ -28,6 +28,14 @@ a {
   text-decoration: none;
 }
 
+.loading{
+  width: 100dvw;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

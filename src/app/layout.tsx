@@ -5,6 +5,9 @@ import { ConfigProvider } from "antd";
 import "./globals.css";
 import StyledComponentsRegistry from "@/lib/registry";
 import ptBR from "antd/lib/locale/pt_BR";
+import { AuthContextProvider } from "@/Contexts/AuthContext";
+import { cookies } from "next/headers";
+import { AppContextProvider } from "@/Contexts/AppContext";
 
 const rubik = Rubik({
   subsets: ["latin"],
@@ -21,6 +24,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const token = cookies().get("token");
+
   return (
     <html lang="pt-br">
       <body className={`${rubik.className}`}>
@@ -34,7 +39,13 @@ export default function RootLayout({
             }}
             locale={ptBR}
           >
-            <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+            <StyledComponentsRegistry>
+              <AppContextProvider>
+                <AuthContextProvider token={token?.value}>
+                  {children}
+                </AuthContextProvider>
+              </AppContextProvider>
+            </StyledComponentsRegistry>
           </ConfigProvider>
         </AntdRegistry>
       </body>

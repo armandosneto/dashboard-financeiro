@@ -7,4 +7,5 @@ export const verifyToken = async () => {
   if (!token) {
     redirect("/");
   }
+  return token;
 };
