@@ -14,9 +14,7 @@ const DashboardPage: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const getTransactions = useGetTransactions(token as string);
   const [transactions, setTransactions] = useState<Models.Transaction[]>();
-  const [filters, setFilters] = useState<Models.Transaction.Filters>(
-    JSON.parse(localStorage.getItem("filters") || "{}")
-  );
+  const [filters, setFilters] = useState<Models.Transaction.Filters>({});
   const [data, setData] =
     useState<Omit<Models.Transaction.ApiData, "transactions">>();
 
@@ -151,7 +149,10 @@ const DashboardPage: React.FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      await _getTransactions(filters);
+      setFilters(JSON.parse(localStorage.getItem("filters") || "{}"));
+      await _getTransactions(
+        JSON.parse(localStorage.getItem("filters") || "{}")
+      );
     };
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps

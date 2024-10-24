@@ -1,6 +1,7 @@
 "use client";
 import useCollapsed from "@/Hooks/useCollaped";
-import React, { createContext, ReactNode, useContext } from "react";
+import useWindowSize from "@/Hooks/useGetWindowSize";
+import React, { createContext, ReactNode, useContext, useMemo } from "react";
 
 const AppContext = createContext<Contexts.AppContext | undefined>(undefined);
 
@@ -8,7 +9,8 @@ export const AppContextProvider: React.FC<{
   token?: string;
   children: ReactNode;
 }> = ({ children, token: tokenCookieValue }) => {
-  const collapsed = useCollapsed();
+  const [width] = useWindowSize();
+  const collapsed = useMemo(() => width < 1260, [width]);
 
   return (
     <AppContext.Provider value={{ collapsed }}>{children}</AppContext.Provider>
